@@ -1,5 +1,4 @@
 .gitignore
-TODO.md
 tags
 test.sh
 .luarc.json
