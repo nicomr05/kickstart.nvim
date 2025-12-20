@@ -4,9 +4,9 @@
 
 -- Grep search
 vim.opt.grepprg = 'grep -HRIn $* .'
-vim.keymap.set('n', '<Leader>gg', ':copen | :silent :grep ')
-vim.keymap.set('n', ']q', ':cnext <CR>')
-vim.keymap.set('n', '[q', ':cprev <CR>')
+vim.keymap.set('n', '<Leader>gg', ':copen | :silent :grep ', { desc = 'Grep search' })
+vim.keymap.set('n', ']q', ':cnext <CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '[q', ':cprev <CR>', { desc = 'Previous buffer' })
 
 --vim.g.loaded_netrw = 1
 --vim.g.loaded_netrwPlugin = 1
