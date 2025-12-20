@@ -459,7 +459,7 @@ require('lazy').setup({
       },
     },
   },
-
+  --[[
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
@@ -720,7 +720,7 @@ require('lazy').setup({
       }
     end,
   },
-
+  --]]
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },

@@ -10,7 +10,6 @@ vim.opt.wrap = false -- Don't wrap lines
 vim.opt.scrolloff = 10 -- Keep 10 lines above/below cursor
 vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
-
 --vim.opt.winborder = "rounded"
 
 --vim.opt.showcmd = true
