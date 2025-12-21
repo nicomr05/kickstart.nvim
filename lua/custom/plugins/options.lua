@@ -10,6 +10,7 @@ vim.opt.wrap = false -- Don't wrap lines
 vim.opt.scrolloff = 10 -- Keep 10 lines above/below cursor
 vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
+vim.opt.encoding = 'UTF-8' -- Set encoding
 --vim.opt.winborder = "rounded"
 
 --vim.opt.showcmd = true
@@ -71,7 +72,6 @@ vim.opt.selection = 'exclusive' -- Selection behavior
 vim.opt.mouse = 'a' -- Enable mouse support
 --vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
 vim.opt.modifiable = true -- Allow buffer modifications
-vim.opt.encoding = 'UTF-8' -- Set encoding
 
 -- Cursor settings
 vim.opt.guicursor =

@@ -874,6 +874,7 @@ require('lazy').setup({
       vim.cmd.colorscheme 'miniwinter'
       --vim.cmd.colorscheme 'minispring'
       --vim.cmd.colorscheme 'alduin'
+      --vim.cmd.colorscheme 'xcodedarkhc'
     end,
   },
 

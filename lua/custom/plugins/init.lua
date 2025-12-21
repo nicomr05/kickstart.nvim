@@ -9,5 +9,5 @@ return {
   init,
   keymaps,
   options,
-  tabs
+  tabs,
 }
