@@ -871,10 +871,10 @@ require('lazy').setup({
       --vim.cmd.colorscheme 'slate'
       --vim.cmd.colorscheme 'randomhue'
       --vim.cmd.colorscheme 'minicyan'
-      vim.cmd.colorscheme 'miniwinter'
+      --vim.cmd.colorscheme 'miniwinter'
       --vim.cmd.colorscheme 'minispring'
       --vim.cmd.colorscheme 'alduin'
-      --vim.cmd.colorscheme 'xcodedarkhc'
+      vim.cmd.colorscheme 'xcodedarkhc'
     end,
   },
 
