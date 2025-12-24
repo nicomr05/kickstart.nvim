@@ -84,7 +84,7 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
---require 'custom.plugins'
+-- Accesos rápidos a archivos de configuración
 require 'custom.plugins.floatingterminal'
 require 'custom.plugins.functions'
 require 'custom.plugins.globals'
@@ -809,7 +809,7 @@ require('lazy').setup({
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'default',
+        preset = 'super-tab',
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
