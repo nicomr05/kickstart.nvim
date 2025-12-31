@@ -13,6 +13,7 @@ vim.keymap.set('n', '[q', ':cprev <CR>', { desc = 'Previous buffer' })
 
 -- Lazy mapping
 vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = 'Go to Lazy config buffer' })
+vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = 'Go to Mason config buffer' })
 
 -- Normal mode mappings
 vim.keymap.set('n', '<leader>c', ':nohlsearch<CR>', { desc = 'Clear search highlights' })
