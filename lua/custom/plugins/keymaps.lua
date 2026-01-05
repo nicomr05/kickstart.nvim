@@ -42,7 +42,6 @@ vim.keymap.set('x', '<leader>p', '"_dP', { desc = 'Paste without yanking' })
 vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d', { desc = 'Delete without yanking' })
 
 -- Buffer navigation
-vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d', { desc = 'Delete without yanking' })
 vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { desc = 'Previous buffer' })
 
@@ -72,7 +71,7 @@ vim.keymap.set('v', '>', '>gv', { desc = 'Indent right and reselect' })
 
 -- Quick file navigation
 vim.keymap.set('n', '<leader>e', ':Explore<CR>', { desc = 'Open file explorer' })
-vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Find file' })
+--vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Find file' })
 
 -- Better J behavior
 vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines and keep cursor position' })
