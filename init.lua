@@ -84,26 +84,31 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
+-- ============================================================================
+-- GLOBALS
+-- ============================================================================
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Accesos rápidos a archivos de configuración
-require 'custom.plugins.floatingterminal'
-require 'custom.plugins.functions'
-require 'custom.plugins.globals'
-require 'custom.plugins.init'
-require 'custom.plugins.keymaps'
-require 'custom.plugins.options'
-require 'custom.plugins.tabs'
-
 -- Nerd fonts enabled
 vim.g.have_nerd_font = true
 
 -- Python host programme
 vim.g.python3_host_prog = '/usr/bin/python3'
+
+-- Accesos rápidos a archivos de configuración
+require 'custom.plugins.floatingterminal'
+require 'custom.plugins.functions'
+--require 'custom.plugins.globals'
+require 'custom.plugins.keymaps'
+require 'custom.plugins.options'
+require 'custom.plugins.tabs'
+
+-- ============================================================================
 
 -- [[ Setting options ]]
 -- See `:help vim.o`

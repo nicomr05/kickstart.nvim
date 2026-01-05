@@ -3,10 +3,10 @@
 -- ============================================================================
 
 -- Copy Full File-Path
-vim.keymap.set("n", "<leader>pa", function()
-	local path = vim.fn.expand("%:p")
-	vim.fn.setreg("+", path)
-	print("file:", path)
+vim.keymap.set('n', '<leader>pa', function()
+  local path = vim.fn.expand '%:p'
+  vim.fn.setreg('+', path)
+  print('file:', path)
 end, { desc = 'Copy Full File-Path' })
 
 -- Highlight yanked text
@@ -18,7 +18,7 @@ end, { desc = 'Copy Full File-Path' })
 --})
 
 -- Return to last edit position when opening files
-vim.api.nvim_create_autocmd("BufReadPost", {
+vim.api.nvim_create_autocmd('BufReadPost', {
   group = augroup,
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
@@ -30,18 +30,18 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- Set filetype-specific settings
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd('FileType', {
   group = augroup,
-  pattern = { "python", "md" },
+  pattern = { 'python', 'md' },
   callback = function()
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd('FileType', {
   group = augroup,
-  pattern = { "lua", "javascript", "typescript", "json", "html", "css", "c", "cpp" },
+  pattern = { 'lua', 'javascript', 'typescript', 'json', 'html', 'css', 'c', 'cpp' },
   callback = function()
     vim.opt_local.tabstop = 2
     vim.opt_local.shiftwidth = 2
@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Auto-close terminal when process exits
-vim.api.nvim_create_autocmd("TermClose", {
+vim.api.nvim_create_autocmd('TermClose', {
   group = augroup,
   callback = function()
     if vim.v.event.status == 0 then
@@ -59,28 +59,28 @@ vim.api.nvim_create_autocmd("TermClose", {
 })
 
 -- Disable line numbers in terminal
-vim.api.nvim_create_autocmd("TermOpen", {
+vim.api.nvim_create_autocmd('TermOpen', {
   group = augroup,
   callback = function()
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
-    vim.opt_local.signcolumn = "no"
+    vim.opt_local.signcolumn = 'no'
   end,
 })
 
 -- Auto-resize splits when window is resized
-vim.api.nvim_create_autocmd("VimResized", {
+vim.api.nvim_create_autocmd('VimResized', {
   group = augroup,
   callback = function()
-    vim.cmd("tabdo wincmd =")
+    vim.cmd 'tabdo wincmd ='
   end,
 })
 
 -- Create directories when saving files
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd('BufWritePre', {
   group = augroup,
   callback = function()
-    local dir = vim.fn.expand('<afile>:p:h')
+    local dir = vim.fn.expand '<afile>:p:h'
     if vim.fn.isdirectory(dir) == 0 then
       vim.fn.mkdir(dir, 'p')
     end
@@ -89,18 +89,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- Command-line completion
 vim.opt.wildmenu = true
-vim.opt.wildmode = "longest:full,full"
-vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
+vim.opt.wildmode = 'longest:full,full'
+vim.opt.wildignore:append { '*.o', '*.obj', '*.pyc', '*.class', '*.jar' }
 
 -- Better diff options
-vim.opt.diffopt:append("linematch:60")
+vim.opt.diffopt:append 'linematch:60'
 
 -- Performance improvements
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
 
 -- Create undo directory if it doesn't exist
-local undodir = vim.fn.expand("~/.vim/undodir")
+local undodir = vim.fn.expand '~/.vim/undodir'
 if vim.fn.isdirectory(undodir) == 0 then
-  vim.fn.mkdir(undodir, "p")
+  vim.fn.mkdir(undodir, 'p')
 end
