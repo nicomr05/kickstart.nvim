@@ -11,9 +11,14 @@ vim.keymap.set('n', '[q', ':cprev <CR>', { desc = 'Previous buffer' })
 --vim.g.loaded_netrw = 1
 --vim.g.loaded_netrwPlugin = 1
 
--- Lazy mapping
-vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = 'Go to Lazy config buffer' })
-vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = 'Go to Mason config buffer' })
+-- Plugin mappings
+vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = 'Lazy config buffer' })
+vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = 'Mason config buffer' })
+vim.keymap.set('n', '<leader>n', ':Neotree toggle float<CR>', { desc = 'Neotree file explorer' })
+
+-- Quick file navigation
+--vim.keymap.set('n', '<leader>e', ':Explore<CR>', { desc = 'Open file explorer' })
+--vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Find file' })
 
 -- Normal mode mappings
 vim.keymap.set('n', '<leader>c', ':nohlsearch<CR>', { desc = 'Clear search highlights' })
@@ -68,10 +73,6 @@ vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
 -- Better indenting in visual mode
 vim.keymap.set('v', '<', '<gv', { desc = 'Indent left and reselect' })
 vim.keymap.set('v', '>', '>gv', { desc = 'Indent right and reselect' })
-
--- Quick file navigation
-vim.keymap.set('n', '<leader>e', ':Explore<CR>', { desc = 'Open file explorer' })
---vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Find file' })
 
 -- Better J behavior
 vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines and keep cursor position' })

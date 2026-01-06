@@ -335,7 +335,6 @@ require('lazy').setup({
   -- you do for a plugin at the top level, you can do for a dependency.
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
-
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
@@ -714,7 +713,16 @@ require('lazy').setup({
       }
     end,
   },
-
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+      'nvim-tree/nvim-web-devicons', -- optional, but recommended
+    },
+    lazy = false, -- neo-tree will lazily load itself
+  },
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
@@ -855,6 +863,13 @@ require('lazy').setup({
     },
   },
 
+  {
+    'thesimonho/kanagawa-paper.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -870,6 +885,66 @@ require('lazy').setup({
         },
       }
 
+      require('kanagawa-paper').setup {
+        -- enable undercurls for underlined text
+        undercurl = false,
+        -- transparent background
+        transparent = false,
+        -- highlight background for the left gutter
+        gutter = false,
+        -- background for diagnostic virtual text
+        diag_background = true,
+        -- dim inactive windows. Disabled when transparent
+        dim_inactive = false,
+        -- set colors for terminal buffers
+        terminal_colors = false,
+        -- cache highlights and colors for faster startup.
+        -- see Cache section for more details.
+        cache = true,
+
+        styles = {
+          -- style for comments
+          comment = { italic = false },
+          -- style for functions
+          functions = { italic = false, bold = true },
+          -- style for keywords
+          keyword = { italic = false, bold = true },
+          -- style for statements
+          statement = { italic = false, bold = false },
+          -- style for types
+          type = { italic = false, bold = true },
+        },
+        -- override default palette and theme colors
+        colors = {
+          palette = {},
+          theme = {
+            ink = {},
+            canvas = {},
+          },
+        },
+        -- adjust overall color balance for each theme [-1, 1]
+        color_offset = {
+          ink = { brightness = 0, saturation = 0 },
+          canvas = { brightness = 0, saturation = 0 },
+        },
+        -- override highlight groups
+        --overrides = function(colors)
+        --  return {}
+        --end,
+
+        -- uses lazy.nvim, if installed, to automatically enable needed plugins
+        auto_plugins = true,
+        -- enable highlights for all plugins (disabled if using lazy.nvim)
+        all_plugins = package.loaded.lazy == nil,
+        -- manually enable/disable individual plugins.
+        -- check the `groups/plugins` directory for the exact names
+        plugins = {
+          -- examples:
+          -- rainbow_delimiters = true
+          which_key = true,
+        },
+      }
+
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
@@ -879,7 +954,8 @@ require('lazy').setup({
       --vim.cmd.colorscheme 'miniwinter'
       --vim.cmd.colorscheme 'minispring'
       --vim.cmd.colorscheme 'alduin'
-      vim.cmd.colorscheme 'xcodedarkhc'
+      --vim.cmd.colorscheme 'xcodedarkhc'
+      vim.cmd.colorscheme 'kanagawa-paper-ink'
     end,
   },
 
@@ -963,8 +1039,6 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
