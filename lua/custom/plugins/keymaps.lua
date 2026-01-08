@@ -20,8 +20,11 @@ vim.keymap.set('n', '<leader>n', ':Neotree toggle left<CR>', { desc = 'Neotree f
 --vim.keymap.set('n', '<leader>e', ':Explore<CR>', { desc = 'Open file explorer' })
 --vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Find file' })
 
--- Normal mode mappings
-vim.keymap.set('n', '<leader>c', ':nohlsearch<CR>', { desc = 'Clear search highlights' })
+-- Clear search gighlight
+vim.keymap.set('n', '<leader>c', ':nohlsearch<CR>', { desc = 'Clear search highlight' })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Automatic brackets
 vim.cmd [[inoremap " ""<left>]]
@@ -34,6 +37,7 @@ vim.cmd [[inoremap {;<CR> {<CR>};<ESC>O]]
 
 -- Y to EOL
 vim.keymap.set('n', 'Y', 'y$', { desc = 'Yank to end of line' })
+
 -- Center screen when jumping
 --vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
 --vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
