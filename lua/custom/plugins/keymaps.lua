@@ -14,7 +14,7 @@ vim.keymap.set('n', '[q', ':cprev <CR>', { desc = 'Previous buffer' })
 -- Plugin mappings
 vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = 'Lazy config buffer' })
 vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = 'Mason config buffer' })
-vim.keymap.set('n', '<leader>n', ':Neotree toggle float<CR>', { desc = 'Neotree file explorer' })
+vim.keymap.set('n', '<leader>n', ':Neotree toggle left<CR>', { desc = 'Neotree file explorer' })
 
 -- Quick file navigation
 --vim.keymap.set('n', '<leader>e', ':Explore<CR>', { desc = 'Open file explorer' })
