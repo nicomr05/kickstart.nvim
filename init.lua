@@ -720,7 +720,7 @@ require('lazy').setup({
       'MunifTanjim/nui.nvim',
       'nvim-tree/nvim-web-devicons', -- optional, but recommended
     },
-    lazy = true, -- neo-tree will lazily load itself
+    lazy = false, -- neo-tree will lazily load itself
   },
   { -- Autoformat
     'stevearc/conform.nvim',
