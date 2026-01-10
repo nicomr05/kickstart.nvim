@@ -4,9 +4,7 @@
 
 -- Grep search
 vim.opt.grepprg = 'grep -HRIn $* .'
-vim.keymap.set('n', '<Leader>gg', ':copen | :silent :grep ', { desc = 'Grep search' })
-vim.keymap.set('n', ']q', ':cnext <CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '[q', ':cprev <CR>', { desc = 'Previous buffer' })
+--vim.keymap.set('n', '<Leader>gg', ':copen | :silent :grep ', { desc = 'Grep search' })
 
 --vim.g.loaded_netrw = 1
 --vim.g.loaded_netrwPlugin = 1
@@ -24,7 +22,7 @@ vim.keymap.set('n', '<leader>n', ':Neotree toggle left<CR>', { desc = 'Neotree f
 vim.keymap.set('n', '<leader>c', ':nohlsearch<CR>', { desc = 'Clear search highlight' })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic Quickfix list' })
 
 -- Automatic brackets
 vim.cmd [[inoremap " ""<left>]]
@@ -51,8 +49,8 @@ vim.keymap.set('x', '<leader>p', '"_dP', { desc = 'Paste without yanking' })
 vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d', { desc = 'Delete without yanking' })
 
 -- Buffer navigation
-vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { desc = '[B]uffer [N]ext' })
+vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { desc = '[B]uffer [P]revious' })
 
 -- Better window navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })
