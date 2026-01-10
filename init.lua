@@ -698,6 +698,20 @@ require('lazy').setup({
       }
     end,
   },
+
+  {
+    'utilyre/barbecue.nvim',
+    name = 'barbecue',
+    version = '*',
+    dependencies = {
+      'SmiteshP/nvim-navic',
+      'nvim-tree/nvim-web-devicons', -- optional dependency
+    },
+    opts = {
+      -- configurations go here
+    },
+  },
+
   {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v3.x',
@@ -706,7 +720,7 @@ require('lazy').setup({
       'MunifTanjim/nui.nvim',
       'nvim-tree/nvim-web-devicons', -- optional, but recommended
     },
-    lazy = false, -- neo-tree will lazily load itself
+    lazy = true, -- neo-tree will lazily load itself
   },
   { -- Autoformat
     'stevearc/conform.nvim',
