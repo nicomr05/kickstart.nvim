@@ -721,7 +721,30 @@ require('lazy').setup({
       'nvim-tree/nvim-web-devicons', -- optional, but recommended
     },
     lazy = false, -- neo-tree will lazily load itself
+    opts = {
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          show_hidden_count = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_by_name = {
+            '.git',
+            '.github',
+            '.venv',
+            '.stfolder',
+            '.stignore',
+          },
+          never_show = {
+            '.git',
+            '.github',
+            '.venv',
+          },
+        },
+      },
+    },
   },
+
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
@@ -997,6 +1020,7 @@ require('lazy').setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     branch = 'master',
