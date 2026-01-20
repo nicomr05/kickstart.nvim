@@ -975,8 +975,9 @@ require('lazy').setup({
       --vim.cmd.colorscheme 'miniwinter'
       --vim.cmd.colorscheme 'alduin'
       --vim.cmd.colorscheme 'tokyonight-night'
+      --vim.cmd.colorscheme 'tokyonight-moon'
       --vim.cmd.colorscheme 'xcodedarkhc'
-      vim.cmd.colorscheme 'kanagawa-paper-ink'
+      vim.cmd.colorscheme 'kanagawa-paper'
     end,
   },
 
