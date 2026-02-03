@@ -981,14 +981,23 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      --vim.cmd.colorscheme 'slate'
-      --vim.cmd.colorscheme 'randomhue'
-      --vim.cmd.colorscheme 'miniwinter'
-      --vim.cmd.colorscheme 'alduin'
-      --vim.cmd.colorscheme 'tokyonight-night'
-      --vim.cmd.colorscheme 'tokyonight-moon'
-      --vim.cmd.colorscheme 'xcodedarkhc'
+
+      -- Dark colorschemes
+      -- vim.cmd.colorscheme 'slate'
+      -- vim.cmd.colorscheme 'randomhue'
+      -- vim.cmd.colorscheme 'miniwinter'
+      -- vim.cmd.colorscheme 'alduin'
+      -- vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'tokyonight-storm'
+      -- vim.cmd.colorscheme 'xcodedarkhc'
       vim.cmd.colorscheme 'kanagawa-paper'
+
+      -- Light colorschemes
+      -- vim.cmd.colorscheme 'iceberg'
+      -- vim.cmd.colorscheme 'lightning'
+      -- vim.cmd.colorscheme 'minimal'
+      -- vim.cmd.colorscheme 'studio98'
+      -- vim.cmd.colorscheme 'terse'
     end,
   },
 
