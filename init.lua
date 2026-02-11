@@ -985,12 +985,12 @@ require('lazy').setup({
       -- Dark colorschemes
       -- vim.cmd.colorscheme 'slate'
       -- vim.cmd.colorscheme 'randomhue'
-      -- vim.cmd.colorscheme 'miniwinter'
+      vim.cmd.colorscheme 'miniwinter'
       -- vim.cmd.colorscheme 'alduin'
       -- vim.cmd.colorscheme 'tokyonight-night'
       -- vim.cmd.colorscheme 'tokyonight-storm'
       -- vim.cmd.colorscheme 'xcodedarkhc'
-      vim.cmd.colorscheme 'kanagawa-paper'
+      -- vim.cmd.colorscheme 'kanagawa-paper'
 
       -- Light colorschemes
       -- vim.cmd.colorscheme 'iceberg'
