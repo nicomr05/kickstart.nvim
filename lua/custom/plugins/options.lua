@@ -76,6 +76,10 @@ vim.opt.modifiable = true -- Allow buffer modifications
 -- Cursor settings
 vim.opt.guicursor =
   'n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175'
+-- vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'Cursor', { reverse })
+-- vim.o.background = 'dark'
 
 -- Folding settings
 vim.opt.foldmethod = 'expr' -- Use expression for folding

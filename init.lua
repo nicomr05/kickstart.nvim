@@ -917,7 +917,7 @@ require('lazy').setup({
         groups = {
           border = 'muted',
           link = 'iris',
-          panel = 'surface',
+          panel = 'base',
 
           error = 'love',
           hint = 'iris',
@@ -944,11 +944,42 @@ require('lazy').setup({
           h5 = 'pine',
           h6 = 'foam',
         },
+
+        palette = {
+          -- Override the builtin palette per variant
+          moon = {
+            base = '#18191a',
+            overlay = '#363738',
+          },
+        },
+
+        -- NOTE: Highlight groups are extended (merged) by default. Disable this
+        -- per group via `inherit = false`
+        highlight_groups = {
+          -- Comment = { fg = 'foam' },
+          -- StatusLine = { fg = 'love', bg = 'love', blend = 15 },
+          -- VertSplit = { fg = 'muted', bg = 'muted' },
+          -- Visual = { fg = 'base', bg = 'text', inherit = false },
+          Cursor = { bg = 'reverse', inherit = false },
+          CursorLine = { bg = 'muted', inherit = false, blend = 15 },
+        },
+
+        before_highlight = function(group, highlight, palette)
+          -- Disable all undercurls
+          if highlight.undercurl then
+            highlight.undercurl = false
+          end
+
+          -- Change palette colour
+          -- if highlight.fg == palette.pine then
+          --   highlight.fg = palette.foam
+          -- end
+        end,
       }
 
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+      -- any other, such as 'rose-pine-dawn' or 'rose-pine-moon'.
 
       -- Dark colorschemes
       -- vim.cmd.colorscheme 'slate'
