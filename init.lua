@@ -896,28 +896,104 @@ require('lazy').setup({
     },
   },
 
-  {
-    'thesimonho/kanagawa-paper.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+    'rose-pine/neovim',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+    name = 'rose-pine',
+    config = function()
+      require('rose-pine').setup {
+        variant = 'auto',
+
+        styles = {
+          bold = true,
+          italic = false,
+          transparency = false,
+        },
+
+        groups = {
+          border = 'muted',
+          link = 'iris',
+          panel = 'surface',
+
+          error = 'love',
+          hint = 'iris',
+          info = 'foam',
+          note = 'pine',
+          todo = 'rose',
+          warn = 'gold',
+
+          git_add = 'foam',
+          git_change = 'rose',
+          git_delete = 'love',
+          git_dirty = 'rose',
+          git_ignore = 'muted',
+          git_merge = 'iris',
+          git_rename = 'pine',
+          git_stage = 'iris',
+          git_text = 'rose',
+          git_untracked = 'subtle',
+
+          h1 = 'iris',
+          h2 = 'foam',
+          h3 = 'rose',
+          h4 = 'gold',
+          h5 = 'pine',
+          h6 = 'foam',
+        },
+      }
+
+      -- Load the colorscheme here.
+      -- Like many other themes, this one has different styles, and you could load
+      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+
+      -- Dark colorschemes
+      -- vim.cmd.colorscheme 'slate'
+      -- vim.cmd.colorscheme 'randomhue'
+      -- vim.cmd.colorscheme 'miniwinter'
+      -- vim.cmd.colorscheme 'alduin'
+      -- vim.cmd.colorscheme 'tokyonight'
+      -- vim.cmd.colorscheme 'xcodedarkhc'
+      -- vim.cmd.colorscheme 'kanagawa-paper'
+      -- vim.cmd.colorscheme 'hemisu'
+      vim.cmd.colorscheme 'rose-pine'
+
+      -- Light colorschemes
+      -- vim.cmd.colorscheme 'iceberg'
+      -- vim.cmd.colorscheme 'minimal'
+      -- vim.cmd.colorscheme 'studio98'
+      -- vim.cmd.colorscheme 'terse'
+    end,
+  },
+
+  {
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
+        style = 'night',
+        -- transparent = true,
+        terminal_colors = true,
         styles = {
           comments = { italic = false }, -- Disable italics in comments
+          keywords = { italic = false, bold = true },
+          sidebars = 'dark',
+          floats = 'dark',
         },
       }
+    end,
+  },
 
+  {
+    'thesimonho/kanagawa-paper.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
       require('kanagawa-paper').setup {
         -- enable undercurls for underlined text
         undercurl = false,
@@ -977,28 +1053,6 @@ require('lazy').setup({
           which_key = true,
         },
       }
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-
-      -- Dark colorschemes
-      -- vim.cmd.colorscheme 'slate'
-      -- vim.cmd.colorscheme 'randomhue'
-      vim.cmd.colorscheme 'miniwinter'
-      -- vim.cmd.colorscheme 'alduin'
-      -- vim.cmd.colorscheme 'tokyonight-night'
-      -- vim.cmd.colorscheme 'tokyonight-moon'
-      -- vim.cmd.colorscheme 'xcodedarkhc'
-      -- vim.cmd.colorscheme 'kanagawa-paper'
-      -- vim.cmd.colorscheme 'hemisu'
-
-      -- Light colorschemes
-      -- vim.cmd.colorscheme 'iceberg'
-      -- vim.cmd.colorscheme 'lightning'
-      -- vim.cmd.colorscheme 'minimal'
-      -- vim.cmd.colorscheme 'studio98'
-      -- vim.cmd.colorscheme 'terse'
     end,
   },
 
