@@ -960,7 +960,8 @@ require('lazy').setup({
           -- StatusLine = { fg = 'love', bg = 'love', blend = 15 },
           -- VertSplit = { fg = 'muted', bg = 'muted' },
           -- Visual = { fg = 'base', bg = 'text', inherit = false },
-          Cursor = { bg = 'reverse', inherit = false },
+          -- Cursor = { bg = 'reverse', inherit = false },
+          Cursor = { fg = 'base', bg = 'text', inherit = false },
           CursorLine = { bg = 'muted', inherit = false, blend = 15 },
         },
 
