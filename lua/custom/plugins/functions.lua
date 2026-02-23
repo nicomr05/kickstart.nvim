@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 -- Set filetype-specific settings
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup,
-  pattern = { 'python', 'md' },
+  pattern = { 'python', 'md', 'java' },
   callback = function()
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4
