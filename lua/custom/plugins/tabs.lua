@@ -12,12 +12,12 @@ vim.cmd [[
 ]]
 
 -- Alternative navigation (more intuitive)
-vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = '[T]ab [N]ew' })
-vim.keymap.set('n', '<leader>tx', ':tabclose<CR>', { desc = '[T]ab close' })
+vim.keymap.set('n', '<leader>Tn', ':tabnew<CR>', { desc = '[T]ab [N]ew' })
+vim.keymap.set('n', '<leader>Tx', ':tabclose<CR>', { desc = '[T]ab close' })
 
 -- Tab moving
-vim.keymap.set('n', '<leader>th<', ':tabmove -1 <CR>', { desc = '[T]ab move left' })
-vim.keymap.set('n', '<leader>tl>', ':tabmove +1 <CR>', { desc = '[T]ab move right' })
+vim.keymap.set('n', '<leader>Th<', ':tabmove -1 <CR>', { desc = '[T]ab move left' })
+vim.keymap.set('n', '<leader>Tl>', ':tabmove +1 <CR>', { desc = '[T]ab move right' })
 
 -- Function to open file in new tab
 local function open_file_in_tab()
@@ -58,10 +58,10 @@ local function close_tabs_left()
 end
 
 -- Enhanced keybindings
-vim.keymap.set('n', '<leader>tO', open_file_in_tab, { desc = '[O]pen file in new [T]ab' })
-vim.keymap.set('n', '<leader>td', duplicate_tab, { desc = '[T]ab [D]uplicate' })
-vim.keymap.set('n', '<leader>tH', close_tabs_left, { desc = 'Close tabs to the left' })
-vim.keymap.set('n', '<leader>tL', close_tabs_right, { desc = 'Close tabs to the right' })
+vim.keymap.set('n', '<leader>TO', open_file_in_tab, { desc = '[O]pen file in new [T]ab' })
+vim.keymap.set('n', '<leader>Td', duplicate_tab, { desc = '[T]ab [D]uplicate' })
+vim.keymap.set('n', '<leader>TH', close_tabs_left, { desc = 'Close tabs to the left' })
+vim.keymap.set('n', '<leader>TL', close_tabs_right, { desc = 'Close tabs to the right' })
 
 -- Function to close buffer but keep tab if it's the only buffer in tab
 local function smart_close_buffer()
