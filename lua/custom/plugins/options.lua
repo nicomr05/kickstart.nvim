@@ -29,7 +29,7 @@ vim.opt.autoindent = true -- Copy indent from current line
 -- Search settings
 vim.opt.ignorecase = true -- Case insensitive search
 vim.opt.smartcase = true -- Case sensitive if uppercase in search
-vim.opt.hlsearch = false -- Don"t highlight search results
+vim.opt.hlsearch = true -- Don't highlight search results
 vim.opt.incsearch = true -- Show matches as you type
 
 -- Visual settings
