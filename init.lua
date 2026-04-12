@@ -1213,14 +1213,45 @@ require('lazy').setup({
     end,
   },
 
-  -- Treesitter arreglado
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    ft = { 'markdown', 'codecompanion' }, -- only loads under these filetypes
+    opts = {
+      completions = { lsp = { enabled = true } },
+      heading = {
+        enabled = true,
+        sign = true,
+        icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+        -- icons = { '─❶ ', '─❷ ', '─❸ ', '─❹ ', '─❺ ', '─❻ ' },
+        -- icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },
+      },
+      code = {
+        enabled = true,
+        sign = true,
+        style = 'full', -- renders the entire block with a background
+      },
+      bullet = {
+        enabled = true,
+        icons = { '●', '○', '◆', '◇' },
+      },
+    },
+    -- More info at https://github.com/MeanderingProgrammer/render-markdown.nvim
+  },
+
+  -- Fixed Treesitter
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
     lazy = false,
     build = ':TSUpdate',
     main = 'nvim-treesitter',
-    opts = {}, -- setup() sin opts, la config va en init
+    opts = {}, -- setup() without opts, config goes in init
     init = function()
       -- Instalar parsers (reemplaza ensure_installed)
       local ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
@@ -1251,7 +1282,7 @@ require('lazy').setup({
     end,
   },
 
-  -- Treesitter roto (por el momento)
+  -- Legacy Treesitter
   -- { -- Highlight, edit, and navigate code
   --   'nvim-treesitter/nvim-treesitter',
   --   branch = 'master',
