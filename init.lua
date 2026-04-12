@@ -1279,6 +1279,41 @@ require('lazy').setup({
   --   --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   -- },
 
+  -- {
+  --   'olimorris/codecompanion.nvim',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-treesitter/nvim-treesitter',
+  --   },
+  --   opts = {
+  --     adapters = {
+  --       http = {
+  --         ollama = function()
+  --           return require('codecompanion.adapters').extend('ollama', {
+  --             env = {
+  --               url = 'https://ollama.com',
+  --               api_key = 'OLLAMA_API_KEY',
+  --             },
+  --             headers = {
+  --               ['Content-Type'] = 'application/json',
+  --               ['Authorization'] = 'Bearer ${api_key}',
+  --             },
+  --             schema = {
+  --               model = {
+  --                 default = 'qwen3-coder:480b-cloud',
+  --               },
+  --             },
+  --           })
+  --         end,
+  --       },
+  --     },
+  --     strategies = {
+  --       chat = { adapter = 'ollama' },
+  --       inline = { adapter = 'ollama' },
+  --     },
+  --   },
+  -- },
+
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
