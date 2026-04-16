@@ -81,3 +81,6 @@ vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines and keep cursor position'
 
 -- Quick config editing
 vim.keymap.set('n', '<leader>rc', ':e ~/.config/nvim/init.lua<CR>', { desc = 'Edit config' })
+
+-- VimTeX keymaps
+vim.keymap.set('n', '<leader>K', ':VimtexCompile<CR>', { desc = 'Compile TeX file' }) -- aún no se que poner aquí
