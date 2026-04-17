@@ -1257,6 +1257,15 @@ require('lazy').setup({
         enabled = true,
         icons = { '●', '○', '◆', '◇' },
       },
+      latex = {
+        enabled = true,
+        render_modes = false,
+        converter = { 'utftex', 'latex2text' },
+        highlight = 'RenderMarkdownMath',
+        position = 'center',
+        top_pad = 0,
+        bottom_pad = 0,
+      },
     },
     -- More info at https://github.com/MeanderingProgrammer/render-markdown.nvim
   },
