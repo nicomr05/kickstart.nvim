@@ -1247,6 +1247,11 @@ require('lazy').setup({
         enabled = true,
         sign = true,
         style = 'full', -- renders the entire block with a background
+        language = true, -- renders the name of the code-block at the top
+        language_pad = 1,
+        width = 'block',
+        left_pad = 1,
+        right_pad = 1,
       },
       bullet = {
         enabled = true,
