@@ -532,7 +532,7 @@ require('lazy').setup({
       end
 
       local languages_without_semantics = {
-        'java',
+        'jdtls',
       }
 
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -1045,6 +1045,16 @@ require('lazy').setup({
           -- if highlight.fg == palette.pine then
           --   highlight.fg = palette.foam
           -- end
+          -- Si el grupo termina en "Attribute", "Method", etc., cambia el color
+          if group:match 'Attribute$' or group:match 'Method$' then
+            highlight.fg = palette.foam
+          end
+
+          -- Semantic tokens de jdtls
+          if group == '@lsp.type.modifier.java' then
+            highlight.link = 'Keyword'
+            highlight.fg = nil -- limpiar fg para que el link tenga efecto
+          end
         end,
       }
 
