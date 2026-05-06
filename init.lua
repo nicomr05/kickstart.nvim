@@ -1080,12 +1080,12 @@ require('lazy').setup({
       -- vim.cmd.colorscheme 'terse'
 
       -- Colores de terminal reajustados
-      vim.api.nvim_create_autocmd('TermOpen', {
-        callback = function()
-          vim.g.terminal_color_6 = '#1793d1'
-          vim.g.terminal_color_14 = '#4fc1ee'
-        end,
-      })
+      -- vim.api.nvim_create_autocmd('TermOpen', {
+      --   callback = function()
+      --     vim.g.terminal_color_6 = '#1793d1'
+      --     vim.g.terminal_color_14 = '#4fc1ee'
+      --   end,
+      -- })
     end,
   },
 
