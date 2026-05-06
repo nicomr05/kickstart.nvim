@@ -1332,7 +1332,25 @@ require('lazy').setup({
     opts = {}, -- setup() without opts, config goes in init
     init = function()
       -- Instalar parsers (reemplaza ensure_installed)
-      local ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+      local ensure_installed = {
+        'bash',
+        'c',
+        'cmake',
+        'cpp',
+        'diff',
+        'gitcommit',
+        'git_rebase',
+        'java',
+        'lua',
+        'luadoc',
+        'make',
+        'markdown',
+        'markdown_inline',
+        'python',
+        'query',
+        'vim',
+        'vimdoc',
+      }
       local already = require('nvim-treesitter.config').get_installed()
       local to_install = vim.tbl_filter(function(p)
         return not vim.tbl_contains(already, p)
