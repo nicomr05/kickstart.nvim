@@ -1339,7 +1339,7 @@ require('lazy').setup({
     main = 'nvim-treesitter',
     opts = {}, -- setup() without opts, config goes in init
     init = function()
-      -- Instalar parsers (reemplaza ensure_installed)
+      -- Install parsers
       local ensure_installed = {
         'bash',
         'c',
@@ -1367,7 +1367,7 @@ require('lazy').setup({
         require('nvim-treesitter').install(to_install)
       end
 
-      -- Activar highlighting e indentación por FileType
+      -- Activate highlight and indentation by FileType
       vim.api.nvim_create_autocmd('FileType', {
         callback = function()
           pcall(vim.treesitter.start)
@@ -1414,6 +1414,7 @@ require('lazy').setup({
   --   --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   -- },
 
+  -- AI companion plugin if you do use it (defaulted to ollama cloud model)
   -- {
   --   'olimorris/codecompanion.nvim',
   --   dependencies = {
