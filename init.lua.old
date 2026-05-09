@@ -145,13 +145,6 @@ vim.o.confirm = true
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Clear highlights on search when pressing <leader>c in normal mode
---  See `:help hlsearch`
---vim.keymap.set('n', '<leader>c', '<cmd>nohlsearch<CR>')
-
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -166,15 +159,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
@@ -183,19 +167,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.hl.on_yank()`
---[[
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
-})
---]]
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -262,6 +233,48 @@ require('lazy').setup({
     },
   },
 
+  {
+    'xiyaowong/transparent.nvim',
+    lazy = false,
+    opts = {
+      -- table: default groups
+      groups = {
+        'Normal',
+        'NormalNC',
+        'Comment',
+        'Constant',
+        'Special',
+        'Identifier',
+        'Statement',
+        'PreProc',
+        'Type',
+        'Underlined',
+        'Todo',
+        'String',
+        'Function',
+        'Conditional',
+        'Repeat',
+        'Operator',
+        'Structure',
+        'LineNr',
+        'NonText',
+        'SignColumn',
+        'CursorLine',
+        'CursorLineNr',
+        'StatusLine',
+        'StatusLineNC',
+        'EndOfBuffer',
+      },
+      -- table: additional groups that should be cleared
+      extra_groups = {},
+      -- table: groups you don't want to clear
+      exclude_groups = {},
+      -- function: code to be executed after highlight groups are cleared
+      -- Also the user event "TransparentClear" will be triggered
+      on_clear = function() end,
+    },
+  },
+
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -323,8 +336,9 @@ require('lazy').setup({
       -- Document existing key chains
       spec = {
         { '<leader>s', group = '[S]earch' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>T', group = '[T]abs' },
+        { '<leader>g', group = '[G]it Hunk', mode = { 'n', 'v' } },
+        { '<leader>b', group = '[B]uffer', mode = { 'n' } },
       },
     },
   },
@@ -412,7 +426,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -421,7 +435,7 @@ require('lazy').setup({
           winblend = 10,
           previewer = false,
         })
-      end, { desc = '[/] Fuzzily search in current buffer' })
+      end, { desc = 'Fuzzily search in current buffer' })
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
@@ -453,7 +467,6 @@ require('lazy').setup({
     },
   },
 
-  --[[
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
@@ -461,7 +474,18 @@ require('lazy').setup({
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-      { 'mason-org/mason.nvim', opts = {} },
+      {
+        'mason-org/mason.nvim',
+        opts = {
+          ui = {
+            icons = {
+              package_installed = '✓',
+              package_pending = '➜',
+              package_uninstalled = '✗',
+            },
+          },
+        },
+      },
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -496,6 +520,29 @@ require('lazy').setup({
       --
       -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
       -- and elegantly composed help section, `:help lsp-vs-treesitter`
+
+      -- Disables semantic highilight for the languages in the table below
+      local function has_value(tab, val)
+        for i, value in ipairs(tab) do
+          if value == val then
+            return true
+          end
+        end
+        return false
+      end
+
+      local languages_without_semantics = {
+        'jdtls',
+      }
+
+      vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client and has_value(languages_without_semantics, client.name) then
+            client.server_capabilities.semanticTokensProvider = nil
+          end
+        end,
+      })
 
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
@@ -598,9 +645,9 @@ require('lazy').setup({
           --
           -- This may be unwanted, since they displace some of your code
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map('<leader>th', function()
+            map('<leader>h', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
+            end, 'Toggle Inlay [H]ints')
           end
         end,
       })
@@ -714,7 +761,32 @@ require('lazy').setup({
       }
     end,
   },
-  --]]
+
+  {
+    'lervag/vimtex',
+    lazy = false, -- lazy-loading will disable inverse search
+    config = function()
+      vim.g.vimtex_mappings_disable = { ['n'] = { 'K' } } -- disable `K` as it conflicts with LSP hover
+      vim.g.vimtex_quickfix_method = vim.fn.executable 'pplatex' == 1 and 'pplatex' or 'latexlog'
+    end,
+    keys = {
+      { '<localLeader>v', '', desc = '+vimtex', ft = 'tex' },
+    },
+  },
+
+  {
+    'utilyre/barbecue.nvim',
+    name = 'barbecue',
+    version = '*',
+    dependencies = {
+      'SmiteshP/nvim-navic',
+      'nvim-tree/nvim-web-devicons', -- optional dependency
+    },
+    opts = {
+      -- configurations go here
+    },
+  },
+
   {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v3.x',
@@ -724,7 +796,30 @@ require('lazy').setup({
       'nvim-tree/nvim-web-devicons', -- optional, but recommended
     },
     lazy = false, -- neo-tree will lazily load itself
+    opts = {
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          show_hidden_count = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_by_name = {
+            '.git',
+            '.github',
+            '.venv',
+            '.stfolder',
+            '.stignore',
+          },
+          never_show = {
+            '.git',
+            '.github',
+            '.venv',
+          },
+        },
+      },
+    },
   },
+
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
@@ -736,7 +831,7 @@ require('lazy').setup({
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
         mode = '',
-        desc = '[F]ormat buffer',
+        desc = 'Format buffer',
       },
     },
     opts = {
@@ -745,7 +840,12 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = {
+          c = true,
+          cpp = true,
+          python = true,
+          java = true,
+        }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -759,12 +859,14 @@ require('lazy').setup({
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'black' },
+        c = { 'clangd' },
 
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
       },
     },
   },
+
   { -- Autocompletion
     'saghen/blink.cmp',
     event = 'VimEnter',
@@ -864,28 +966,154 @@ require('lazy').setup({
     },
   },
 
-  {
-    'thesimonho/kanagawa-paper.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+    'rose-pine/neovim',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+    name = 'rose-pine',
+    config = function()
+      require('rose-pine').setup {
+        variant = 'auto',
+
+        styles = {
+          bold = true,
+          italic = false,
+          transparency = false,
+        },
+
+        groups = {
+          border = 'muted',
+          link = 'iris',
+          panel = 'base',
+
+          error = 'love',
+          hint = 'iris',
+          info = 'foam',
+          note = 'pine',
+          todo = 'rose',
+          warn = 'gold',
+
+          git_add = 'foam',
+          git_change = 'rose',
+          git_delete = 'love',
+          git_dirty = 'rose',
+          git_ignore = 'muted',
+          git_merge = 'iris',
+          git_rename = 'pine',
+          git_stage = 'iris',
+          git_text = 'rose',
+          git_untracked = 'subtle',
+
+          h1 = 'iris',
+          h2 = 'foam',
+          h3 = 'rose',
+          h4 = 'gold',
+          h5 = 'pine',
+          h6 = 'foam',
+        },
+
+        palette = {
+          -- Override the builtin palette per variant
+          moon = {
+            base = '#18191a',
+            overlay = '#363738',
+          },
+        },
+
+        -- NOTE: Highlight groups are extended (merged) by default. Disable this
+        -- per group via `inherit = false`
+        highlight_groups = {
+          -- Comment = { fg = 'foam' },
+          -- StatusLine = { fg = 'love', bg = 'love', blend = 15 },
+          -- VertSplit = { fg = 'muted', bg = 'muted' },
+          -- Visual = { fg = 'base', bg = 'text', inherit = false },
+          -- Cursor = { bg = 'reverse', inherit = false },
+          Cursor = { fg = 'base', bg = 'text', inherit = false },
+          CursorLine = { bg = 'muted', inherit = false, blend = 15 },
+        },
+
+        before_highlight = function(group, highlight, palette)
+          -- Disable all undercurls
+          -- if highlight.undercurl then
+          --   highlight.undercurl = false
+          -- end
+
+          -- Change palette colour
+          -- if highlight.fg == palette.pine then
+          --   highlight.fg = palette.foam
+          -- end
+          -- Si el grupo termina en "Attribute", "Method", etc., cambia el color
+          if group:match 'Attribute$' or group:match 'Method$' then
+            highlight.fg = palette.foam
+          end
+
+          -- Semantic tokens de jdtls
+          if group == '@lsp.type.modifier.java' then
+            highlight.link = 'Keyword'
+            highlight.fg = nil -- limpiar fg para que el link tenga efecto
+          end
+        end,
+      }
+
+      -- Load the colorscheme here.
+      -- Like many other themes, this one has different styles, and you could load
+      -- any other, such as 'rose-pine-dawn' or 'rose-pine-moon'.
+
+      -- Dark colorschemes
+      -- vim.cmd.colorscheme 'slate'
+      -- vim.cmd.colorscheme 'randomhue'
+      -- vim.cmd.colorscheme 'miniwinter'
+      -- vim.cmd.colorscheme 'alduin'
+      -- vim.cmd.colorscheme 'tokyonight'
+      -- vim.cmd.colorscheme 'xcodedarkhc'
+      -- vim.cmd.colorscheme 'kanagawa-paper'
+      -- vim.cmd.colorscheme 'hemisu'
+      vim.cmd.colorscheme 'rose-pine'
+
+      -- Light colorschemes
+      -- vim.cmd.colorscheme 'iceberg'
+      -- vim.cmd.colorscheme 'minimal'
+      -- vim.cmd.colorscheme 'studio98'
+      -- vim.cmd.colorscheme 'terse'
+
+      -- Colores de terminal reajustados
+      -- vim.api.nvim_create_autocmd('TermOpen', {
+      --   callback = function()
+      --     vim.g.terminal_color_6 = '#1793d1'
+      --     vim.g.terminal_color_14 = '#4fc1ee'
+      --   end,
+      -- })
+    end,
+  },
+
+  {
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
+        style = 'night',
+        -- transparent = true,
+        terminal_colors = true,
         styles = {
           comments = { italic = false }, -- Disable italics in comments
+          keywords = { italic = false, bold = true },
+          sidebars = 'dark',
+          floats = 'dark',
         },
       }
+    end,
+  },
 
+  {
+    'thesimonho/kanagawa-paper.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
       require('kanagawa-paper').setup {
         -- enable undercurls for underlined text
         undercurl = false,
@@ -945,23 +1173,79 @@ require('lazy').setup({
           which_key = true,
         },
       }
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      --vim.cmd.colorscheme 'slate'
-      --vim.cmd.colorscheme 'randomhue'
-      --vim.cmd.colorscheme 'minicyan'
-      --vim.cmd.colorscheme 'miniwinter'
-      --vim.cmd.colorscheme 'minispring'
-      --vim.cmd.colorscheme 'alduin'
-      --vim.cmd.colorscheme 'xcodedarkhc'
-      vim.cmd.colorscheme 'kanagawa-paper-ink'
     end,
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+      signs = true, -- show icons in the signs column
+      sign_priority = 8, -- sign priority
+      -- keywords recognized as todo comments
+      keywords = {
+        FIX = {
+          icon = ' ', -- icon used for the sign, and in search results
+          color = 'error', -- can be a hex color, or a named color (see below)
+          alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE' }, -- a set of other keywords that all map to this FIX keywords
+          -- signs = false, -- configure signs for some keywords individually
+        },
+        TODO = { icon = ' ', color = 'info' },
+        HACK = { icon = ' ', color = 'warning' },
+        WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
+        PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
+        NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
+        TEST = { icon = '⏲ ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
+      },
+      gui_style = {
+        fg = 'NONE', -- The gui style to use for the fg highlight group.
+        bg = 'BOLD', -- The gui style to use for the bg highlight group.
+      },
+      merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+      -- highlighting of the line containing the todo comment
+      -- * before: highlights before the keyword (typically comment characters)
+      -- * keyword: highlights of the keyword
+      -- * after: highlights after the keyword (todo text)
+      highlight = {
+        multiline = true, -- enable multine todo comments
+        multiline_pattern = '^.', -- lua pattern to match the next multiline from the start of the matched keyword
+        multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
+        before = '', -- "fg" or "bg" or empty
+        keyword = 'wide', -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+        after = 'fg', -- "fg" or "bg" or empty
+        pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
+        comments_only = true, -- uses treesitter to match keywords in comments only
+        max_line_len = 400, -- ignore lines longer than this
+        exclude = {}, -- list of file types to exclude highlighting
+      },
+      -- list of named colors where we try to extract the guifg from the
+      -- list of highlight groups or use the hex color if hl not found as a fallback
+      colors = {
+        error = { 'DiagnosticError', 'ErrorMsg', '#DC2626' },
+        warning = { 'DiagnosticWarn', 'WarningMsg', '#FBBF24' },
+        info = { 'DiagnosticInfo', '#2563EB' },
+        hint = { 'DiagnosticHint', '#10B981' },
+        default = { 'Identifier', '#7C3AED' },
+        test = { 'Identifier', '#FF00FF' },
+      },
+      search = {
+        command = 'rg',
+        args = {
+          '--color=never',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+        },
+        -- regex that will be used to match keywords.
+        -- don't replace the (KEYWORDS) placeholder
+        pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+        -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+      },
+    },
+  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -1000,6 +1284,109 @@ require('lazy').setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    ft = { 'markdown', 'codecompanion' }, -- only loads under these filetypes
+    opts = {
+      completions = { lsp = { enabled = true } },
+      heading = {
+        enabled = true,
+        sign = true,
+        icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+        -- icons = { '─❶ ', '─❷ ', '─❸ ', '─❹ ', '─❺ ', '─❻ ' },
+        -- icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },
+      },
+      code = {
+        enabled = true,
+        sign = true,
+        style = 'full', -- renders the entire block with a background
+        language = true, -- renders the name of the code-block at the top
+        language_pad = 2,
+        width = 'block',
+        left_pad = 2,
+        right_pad = 2,
+      },
+      bullet = {
+        enabled = true,
+        icons = { '●', '○', '◆', '◇' },
+      },
+      latex = {
+        enabled = true,
+        render_modes = false,
+        converter = { 'utftex', 'latex2text' },
+        highlight = 'RenderMarkdownMath',
+        position = 'center',
+        top_pad = 0,
+        bottom_pad = 0,
+      },
+    },
+    -- More info at https://github.com/MeanderingProgrammer/render-markdown.nvim
+  },
+
+  -- Fixed Treesitter
+  --  { -- Highlight, edit, and navigate code
+  --    'nvim-treesitter/nvim-treesitter',
+  --    branch = 'main',
+  --    lazy = false,
+  --    build = ':TSUpdate',
+  --    main = 'nvim-treesitter',
+  --    opts = {}, -- setup() without opts, config goes in init
+  --    init = function()
+  --      -- Install parsers
+  --      local ensure_installed = {
+  --        'bash',
+  --        'c',
+  --        'cmake',
+  --        'cpp',
+  --        'diff',
+  --        'gitcommit',
+  --        'git_rebase',
+  --        'java',
+  --        'lua',
+  --        'luadoc',
+  --        'make',
+  --        'markdown',
+  --        'markdown_inline',
+  --        'python',
+  --        'query',
+  --        'vim',
+  --        'vimdoc',
+  --      }
+  --      local already = require('nvim-treesitter.config').get_installed()
+  --      local to_install = vim.tbl_filter(function(p)
+  --        return not vim.tbl_contains(already, p)
+  --      end, ensure_installed)
+  --      if #to_install > 0 then
+  --        require('nvim-treesitter').install(to_install)
+  --      end
+  --
+  --      -- Activate highlight and indentation by FileType
+  --      vim.api.nvim_create_autocmd('FileType', {
+  --        callback = function()
+  --          pcall(vim.treesitter.start)
+  --          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  --        end,
+  --      })
+  --
+  --      vim.api.nvim_create_autocmd('FileType', {
+  --        callback = function(ev)
+  --          local lang = vim.treesitter.language.get_lang(ev.match)
+  --          if lang and require('nvim-treesitter.config').get_available()[lang] then
+  --            pcall(require('nvim-treesitter').install, { lang })
+  --          end
+  --        end,
+  --      })
+  --    end,
+  --  },
+
+  -- Legacy Treesitter
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     branch = 'master',
@@ -1026,6 +1413,42 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+
+  -- AI companion plugin if you do use it (defaulted to ollama cloud model)
+  -- {
+  --   'olimorris/codecompanion.nvim',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-treesitter/nvim-treesitter',
+  --   },
+  --   opts = {
+  --     adapters = {
+  --       http = {
+  --         ollama = function()
+  --           return require('codecompanion.adapters').extend('ollama', {
+  --             env = {
+  --               url = 'https://ollama.com',
+  --               api_key = 'OLLAMA_API_KEY',
+  --             },
+  --             headers = {
+  --               ['Content-Type'] = 'application/json',
+  --               ['Authorization'] = 'Bearer ${api_key}',
+  --             },
+  --             schema = {
+  --               model = {
+  --                 default = 'qwen3-coder:480b-cloud',
+  --               },
+  --             },
+  --           })
+  --         end,
+  --       },
+  --     },
+  --     strategies = {
+  --       chat = { adapter = 'ollama' },
+  --       inline = { adapter = 'ollama' },
+  --     },
+  --   },
+  -- },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
