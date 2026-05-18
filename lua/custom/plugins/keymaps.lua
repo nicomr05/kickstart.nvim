@@ -84,5 +84,7 @@ vim.keymap.set('n', '<leader>rc', ':e ~/.config/nvim/init.lua<CR>', { desc = 'Ed
 
 -- Transparent Vim
 vim.keymap.set('n', '<leader>v', ':TransparentToggle<CR>', { desc = 'Toggle editor transparency' })
--- VimTeX keymaps
+
+-- Markdown/LaTeX keymaps
 vim.keymap.set('n', '<leader>K', ':VimtexCompile<CR>', { desc = 'Compile TeX file' }) -- aún no se que poner aquí
+vim.keymap.set('n', '<leader>rm', '<cmd>RenderMarkdown toggle<CR>', { desc = 'Toggle Render Markdown' })

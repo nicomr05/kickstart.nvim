@@ -1326,6 +1326,10 @@ require('lazy').setup({
     ft = { 'markdown', 'codecompanion' }, -- only loads under these filetypes
     opts = {
       completions = { lsp = { enabled = true } },
+      render_modes = { 'n', 'v' },
+      anti_conceal = {
+        enabled = false,
+      },
       heading = {
         enabled = true,
         sign = true,
@@ -1349,12 +1353,12 @@ require('lazy').setup({
       },
       latex = {
         enabled = true,
-        render_modes = false,
-        converter = { 'utftex', 'latex2text' },
+        converter = { 'pylatexenc', 'latex2text', 'utftex' },
         highlight = 'RenderMarkdownMath',
         position = 'center',
         top_pad = 0,
         bottom_pad = 0,
+        blocks = true,
       },
     },
     -- More info at https://github.com/MeanderingProgrammer/render-markdown.nvim
