@@ -1063,7 +1063,7 @@ require('lazy').setup({
       -- any other, such as 'rose-pine-dawn' or 'rose-pine-moon'.
 
       -- Dark colorschemes
-      -- vim.cmd.colorscheme 'slate'
+      vim.cmd.colorscheme 'slate'
       -- vim.cmd.colorscheme 'randomhue'
       -- vim.cmd.colorscheme 'miniwinter'
       -- vim.cmd.colorscheme 'alduin'
@@ -1071,7 +1071,7 @@ require('lazy').setup({
       -- vim.cmd.colorscheme 'xcodedarkhc'
       -- vim.cmd.colorscheme 'kanagawa-paper'
       -- vim.cmd.colorscheme 'hemisu'
-      vim.cmd.colorscheme 'rose-pine'
+      -- vim.cmd.colorscheme 'rose-pine'
 
       -- Light colorschemes
       -- vim.cmd.colorscheme 'iceberg'
