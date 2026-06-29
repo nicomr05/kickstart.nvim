@@ -1064,6 +1064,15 @@ require('lazy').setup({
 
       -- Dark colorschemes
       vim.cmd.colorscheme 'slate'
+
+      -- Fix floating windows para slate
+      vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1c1c1c', fg = '#d0d0d0' })
+      vim.api.nvim_set_hl(0, 'FloatBorder', { bg = '#1c1c1c', fg = '#4a7a4a' })
+      vim.api.nvim_set_hl(0, 'Pmenu', { bg = '#1c1c1c', fg = '#d0d0d0' })
+      vim.api.nvim_set_hl(0, 'PmenuSel', { bg = '#2a4a2a', fg = '#a8d8a8', bold = true })
+      vim.api.nvim_set_hl(0, 'PmenuSbar', { bg = '#2a2a2a' })
+      vim.api.nvim_set_hl(0, 'PmenuThumb', { bg = '#4a7a4a' })
+
       -- vim.cmd.colorscheme 'randomhue'
       -- vim.cmd.colorscheme 'miniwinter'
       -- vim.cmd.colorscheme 'alduin'
