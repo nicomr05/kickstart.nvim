@@ -16,8 +16,11 @@ vim.keymap.set('n', '<leader>Tn', ':tabnew<CR>', { desc = '[T]ab [N]ew' })
 vim.keymap.set('n', '<leader>Tx', ':tabclose<CR>', { desc = '[T]ab close' })
 
 -- Tab moving
-vim.keymap.set('n', '<leader>Th<', ':tabmove -1 <CR>', { desc = '[T]ab move left' })
-vim.keymap.set('n', '<leader>Tl>', ':tabmove +1 <CR>', { desc = '[T]ab move right' })
+vim.keymap.set('n', '<leader>Th', ':tabmove -1 <CR>', { desc = '[T]ab move left' })
+vim.keymap.set('n', '<leader>Tl', ':tabmove +1 <CR>', { desc = '[T]ab move right' })
+
+vim.keymap.set('n', '<Tab>', ':tabnext <CR>', { desc = 'Tab change left' })
+vim.keymap.set('n', '<S-Tab>', ':tabprevious <CR>', { desc = 'Tab change right' })
 
 -- Function to open file in new tab
 local function open_file_in_tab()
@@ -52,7 +55,7 @@ end
 local function close_tabs_left()
   local current_tab = vim.fn.tabpagenr()
 
-  for i = current_tab - 1, 1, -1 do
+  for _ = current_tab - 1, 1, -1 do
     vim.cmd '1tabclose'
   end
 end
