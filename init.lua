@@ -339,6 +339,7 @@ require('lazy').setup({
         { '<leader>T', group = '[T]abs' },
         { '<leader>g', group = '[G]it Hunk', mode = { 'n', 'v' } },
         { '<leader>b', group = '[B]uffer', mode = { 'n' } },
+        { '<leader>g', group = '[G]itsigns', mode = { 'n' } },
       },
     },
   },
