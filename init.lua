@@ -1064,7 +1064,7 @@ require('lazy').setup({
       -- any other, such as 'rose-pine-dawn' or 'rose-pine-moon'.
 
       -- Dark colorschemes
-      vim.cmd.colorscheme 'slate'
+      -- vim.cmd.colorscheme 'slate'
 
       -- Fix floating windows para slate
       vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1c1c1c', fg = '#d0d0d0' })
@@ -1082,6 +1082,7 @@ require('lazy').setup({
       -- vim.cmd.colorscheme 'kanagawa-paper'
       -- vim.cmd.colorscheme 'hemisu'
       -- vim.cmd.colorscheme 'rose-pine'
+      vim.cmd.colorscheme 'lunaperche'
 
       -- Light colorschemes
       -- vim.cmd.colorscheme 'iceberg'
