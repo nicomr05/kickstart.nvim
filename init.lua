@@ -1074,6 +1074,7 @@ require('lazy').setup({
       vim.api.nvim_set_hl(0, 'PmenuSbar', { bg = '#2a2a2a' })
       vim.api.nvim_set_hl(0, 'PmenuThumb', { bg = '#4a7a4a' })
 
+      vim.cmd.colorscheme 'default'
       -- vim.cmd.colorscheme 'randomhue'
       -- vim.cmd.colorscheme 'miniwinter'
       -- vim.cmd.colorscheme 'alduin'
@@ -1082,7 +1083,7 @@ require('lazy').setup({
       -- vim.cmd.colorscheme 'kanagawa-paper'
       -- vim.cmd.colorscheme 'hemisu'
       -- vim.cmd.colorscheme 'rose-pine'
-      vim.cmd.colorscheme 'lunaperche'
+      -- vim.cmd.colorscheme 'lunaperche'
 
       -- Light colorschemes
       -- vim.cmd.colorscheme 'iceberg'
