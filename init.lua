@@ -1074,9 +1074,9 @@ require('lazy').setup({
       vim.api.nvim_set_hl(0, 'PmenuSbar', { bg = '#2a2a2a' })
       vim.api.nvim_set_hl(0, 'PmenuThumb', { bg = '#4a7a4a' })
 
-      vim.cmd.colorscheme 'default'
+      -- vim.cmd.colorscheme 'default'
       -- vim.cmd.colorscheme 'randomhue'
-      -- vim.cmd.colorscheme 'miniwinter'
+      vim.cmd.colorscheme 'minischeme'
       -- vim.cmd.colorscheme 'alduin'
       -- vim.cmd.colorscheme 'tokyonight'
       -- vim.cmd.colorscheme 'xcodedarkhc'
